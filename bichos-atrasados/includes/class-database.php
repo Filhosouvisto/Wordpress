@@ -8,44 +8,57 @@ class Bichos_Atrasados_Database {
     public static function create_table() {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . BICHOS_ATRASADOS_TABLE;
+        $table_name = $wpdb->prefix . 'bichos_atrasados_cache';
         $charset_collate = $wpdb->get_charset_collate();
         
-        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
-            id mediumint(9) NOT NULL AUTO_INCREMENT,
-            estado varchar(100) NOT NULL,
-            premio varchar(50) NOT NULL,
-            dados longtext NOT NULL,
-            atualizado_em datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            criado_em datetime DEFAULT CURRENT_TIMESTAMP,
+        // Remover tabela antiga se existir
+        $wpdb->query("DROP TABLE IF EXISTS $table_name");
+        
+        $sql = "CREATE TABLE $table_name (
+            id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+            estado VARCHAR(255) NOT NULL,
+            premio VARCHAR(255) NOT NULL,
+            dados LONGTEXT NOT NULL,
+            criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+            atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id),
-            UNIQUE KEY estado_premio (estado, premio)
+            UNIQUE KEY estado_premio (estado(100), premio(100))
         ) $charset_collate;";
         
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+        $result = dbDelta($sql);
+        
+        error_log('Tabela criada: ' . print_r($result, true));
+        
+        return true;
     }
     
     public static function insert_or_update($estado, $premio, $dados) {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . BICHOS_ATRASADOS_TABLE;
+        $table_name = $wpdb->prefix . 'bichos_atrasados_cache';
         
-        return $wpdb->replace(
+        $result = $wpdb->replace(
             $table_name,
             array(
-                'estado' => sanitize_text_field($estado),
-                'premio' => sanitize_text_field($premio),
-                'dados' => wp_json_encode($dados),
+                'estado' => $estado,
+                'premio' => $premio,
+                'dados' => json_encode($dados),
             ),
             array('%s', '%s', '%s')
         );
+        
+        if ($result === false) {
+            error_log('Erro ao inserir dados: ' . $wpdb->last_error);
+        }
+        
+        return $result;
     }
     
     public static function get_by_estado($estado) {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . BICHOS_ATRASADOS_TABLE;
+        $table_name = $wpdb->prefix . 'bichos_atrasados_cache';
         
         $results = $wpdb->get_results(
             $wpdb->prepare(
@@ -60,17 +73,19 @@ class Bichos_Atrasados_Database {
     public static function get_all() {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . BICHOS_ATRASADOS_TABLE;
+        $table_name = $wpdb->prefix . 'bichos_atrasados_cache';
         
         $results = $wpdb->get_results("SELECT DISTINCT estado FROM $table_name ORDER BY estado ASC");
         
-        return $results;
+        error_log('Total de estados encontrados: ' . count($results));
+        
+        return $results ? $results : array();
     }
     
     public static function get_last_update() {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . BICHOS_ATRASADOS_TABLE;
+        $table_name = $wpdb->prefix . 'bichos_atrasados_cache';
         
         $result = $wpdb->get_var("SELECT MAX(atualizado_em) FROM $table_name");
         

@@ -56,8 +56,13 @@ class Bichos_Atrasados {
     }
 
     public function activate() {
+        error_log('\n=== PLUGIN ATIVADO ===');
+        
         // Criar tabela
         Bichos_Atrasados_Database::create_table();
+        
+        // Aguardar um pouco
+        sleep(1);
         
         // Inserir dados iniciais
         Bichos_Atrasados_API_Handler::fetch_data();
@@ -66,9 +71,12 @@ class Bichos_Atrasados {
         if (!wp_next_scheduled('bichos_atrasados_cron')) {
             wp_schedule_event(time(), 'hourly', 'bichos_atrasados_cron');
         }
+        
+        error_log('=== PLUGIN ATIVADO COM SUCESSO ===\n');
     }
 
     public function deactivate() {
+        error_log('\n=== PLUGIN DESATIVADO ===\n');
         // Desagendar tarefa
         wp_clear_scheduled_hook('bichos_atrasados_cron');
     }

@@ -30,6 +30,8 @@ class Bichos_Atrasados_Frontend {
     public function render_shortcode() {
         $loterias = Bichos_Atrasados_Database::get_all();
         
+        error_log('Renderizando shortcode - Loterias encontradas: ' . count($loterias));
+        
         // Emojis para cada loteria
         $emojis = array(
             'PT Rio de Janeiro' => '🔵',
@@ -62,7 +64,10 @@ class Bichos_Atrasados_Frontend {
             <div class="bichos-grid">
                 <?php
                 if (empty($loterias)) {
-                    echo '<p style="text-align: center; padding: 20px; grid-column: 1/-1;">Nenhum dado encontrado. Por favor, ative o plugin novamente.</p>';
+                    echo '<div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(255,255,255,0.8); border-radius: 10px; margin: 20px;">';
+                    echo '<p style="color: #d32f2f; font-size: 16px; margin: 0;">❌ NENHUM DADO ENCONTRADO</p>';
+                    echo '<p style="color: #666; font-size: 12px; margin: 10px 0 0 0;">Por favor, desative e ative o plugin novamente.</p>';
+                    echo '</div>';
                 } else {
                     foreach ($loterias as $loteria) {
                         $estado = $loteria->estado;
@@ -73,7 +78,7 @@ class Bichos_Atrasados_Frontend {
                                 <h3 style="color: <?php echo esc_attr($text_color); ?>;">Atrasados - <?php echo esc_html($estado); ?></h3>
                                 <div class="bichos-emoji"><?php echo $emoji; ?></div>
                             </div>
-                            <p style="color: #999;">Sem dados</p>
+                            <p style="color: #999; margin: 15px 0;">Sem dados</p>
                             <button 
                                 class="bichos-button" 
                                 style="background-color: <?php echo esc_attr($button_color); ?>; color: <?php echo esc_attr($button_text_color); ?>;"

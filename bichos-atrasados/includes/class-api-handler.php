@@ -7,102 +7,78 @@ class Bichos_Atrasados_API_Handler {
     
     private static $api_url = 'https://hojenobicho.com/atrasados/';
     
-    private static $loterias = array(
-        'PT Rio de Janeiro' => 'pt-rio-janeiro',
-        'Look Goiás' => 'look-goias',
-        'Loteria Federal' => 'loteria-federal',
-        'Nacional' => 'nacional',
-        'São Paulo' => 'sao-paulo',
-        'Boa Sorte' => 'boa-sorte',
-        'Lotece' => 'lotece',
-        'Lotep' => 'lotep',
-        'MG' => 'mg',
-        'L-BA' => 'l-ba',
-        'Maluca-BA' => 'maluca-ba',
-        'Maluquinha RJ' => 'maluquinha-rj',
-        'Loteria Popular' => 'loteria-popular',
-        'Bicho-RS Rio Grande do Sul' => 'bicho-rs',
-        'LBR Brasília' => 'lbr-brasilia'
-    );
-    
     public static function fetch_data() {
-        $response = wp_remote_get(self::$api_url, array(
-            'timeout' => 15,
-            'user-agent' => 'Bichos-Atrasados-Plugin/1.0'
-        ));
+        error_log('=== INICIANDO BUSCA DE DADOS ===');
         
-        if (is_wp_error($response)) {
-            error_log('Erro ao buscar dados da API: ' . $response->get_error_message());
-            return false;
-        }
+        // Simular dados para demonstração
+        self::parse_and_save_data('');
         
-        $body = wp_remote_retrieve_body($response);
-        
-        // Parse HTML e extrai dados
-        self::parse_and_save_data($body);
+        error_log('=== BUSCA DE DADOS FINALIZADA ===');
         
         return true;
     }
     
     private static function parse_and_save_data($html) {
-        // Simular dados para demonstração
         $dados_exemplo = array(
             'PT Rio de Janeiro' => array(
-                '1º Prêmio' => array('números' => [1, 2, 3, 4, 5], 'bichos' => ['Avestruz', 'Águia']),
+                '1º Prêmio' => array('números' => array(1, 2, 3, 4, 5), 'bichos' => array('Avestruz', 'Águia')),
             ),
             'Look Goiás' => array(
-                '1º Prêmio' => array('números' => [6, 7, 8, 9, 10], 'bichos' => ['Gato', 'Leão']),
+                '1º Prêmio' => array('números' => array(6, 7, 8, 9, 10), 'bichos' => array('Gato', 'Leão')),
             ),
             'Loteria Federal' => array(
-                '1º Prêmio' => array('números' => [11, 12, 13, 14, 15], 'bichos' => ['Pavão', 'Peru']),
+                '1º Prêmio' => array('números' => array(11, 12, 13, 14, 15), 'bichos' => array('Pavão', 'Peru')),
             ),
             'Nacional' => array(
-                '1º Prêmio' => array('números' => [16, 17, 18, 19, 20], 'bichos' => ['Galo', 'Galinha']),
+                '1º Prêmio' => array('números' => array(16, 17, 18, 19, 20), 'bichos' => array('Galo', 'Galinha')),
             ),
             'São Paulo' => array(
-                '1º Prêmio' => array('números' => [21, 22, 23, 24, 25], 'bichos' => ['Cabra', 'Bode']),
+                '1º Prêmio' => array('números' => array(21, 22, 23, 24, 25), 'bichos' => array('Cabra', 'Bode')),
             ),
             'Boa Sorte' => array(
-                '1º Prêmio' => array('números' => [26, 27, 28, 29, 30], 'bichos' => ['Ovelha', 'Carneiro']),
+                '1º Prêmio' => array('números' => array(26, 27, 28, 29, 30), 'bichos' => array('Ovelha', 'Carneiro')),
             ),
             'Lotece' => array(
-                '1º Prêmio' => array('números' => [31, 32, 33, 34, 35], 'bichos' => ['Porco', 'Leitão']),
+                '1º Prêmio' => array('números' => array(31, 32, 33, 34, 35), 'bichos' => array('Porco', 'Leitão')),
             ),
             'Lotep' => array(
-                '1º Prêmio' => array('números' => [36, 37, 38, 39, 40], 'bichos' => ['Cachorro', 'Cão']),
+                '1º Prêmio' => array('números' => array(36, 37, 38, 39, 40), 'bichos' => array('Cachorro', 'Cão')),
             ),
             'MG' => array(
-                '1º Prêmio' => array('números' => [41, 42, 43, 44, 45], 'bichos' => ['Gato', 'Puma']),
+                '1º Prêmio' => array('números' => array(41, 42, 43, 44, 45), 'bichos' => array('Gato', 'Puma')),
             ),
             'L-BA' => array(
-                '1º Prêmio' => array('números' => [46, 47, 48, 49, 50], 'bichos' => ['Leão', 'Onça']),
+                '1º Prêmio' => array('números' => array(46, 47, 48, 49, 50), 'bichos' => array('Leão', 'Onça')),
             ),
             'Maluca-BA' => array(
-                '1º Prêmio' => array('números' => [51, 52, 53, 54, 55], 'bichos' => ['Cavalo', 'Égua']),
+                '1º Prêmio' => array('números' => array(51, 52, 53, 54, 55), 'bichos' => array('Cavalo', 'Égua')),
             ),
             'Maluquinha RJ' => array(
-                '1º Prêmio' => array('números' => [56, 57, 58, 59, 60], 'bichos' => ['Vaca', 'Touro']),
+                '1º Prêmio' => array('números' => array(56, 57, 58, 59, 60), 'bichos' => array('Vaca', 'Touro')),
             ),
             'Loteria Popular' => array(
-                '1º Prêmio' => array('números' => [61, 62, 63, 64, 65], 'bichos' => ['Borboleta', 'Abelha']),
+                '1º Prêmio' => array('números' => array(61, 62, 63, 64, 65), 'bichos' => array('Borboleta', 'Abelha')),
             ),
             'Bicho-RS Rio Grande do Sul' => array(
-                '1º Prêmio' => array('números' => [66, 67, 68, 69, 70], 'bichos' => ['Besouro', 'Barata']),
+                '1º Prêmio' => array('números' => array(66, 67, 68, 69, 70), 'bichos' => array('Besouro', 'Barata')),
             ),
             'LBR Brasília' => array(
-                '1º Prêmio' => array('números' => [71, 72, 73, 74, 75], 'bichos' => ['Sapo', 'Jacaré']),
+                '1º Prêmio' => array('números' => array(71, 72, 73, 74, 75), 'bichos' => array('Sapo', 'Jacaré')),
             ),
         );
         
         // Salvar dados no banco
+        $count = 0;
         foreach ($dados_exemplo as $estado => $premios) {
             foreach ($premios as $premio => $dados) {
-                Bichos_Atrasados_Database::insert_or_update($estado, $premio, $dados);
+                $result = Bichos_Atrasados_Database::insert_or_update($estado, $premio, $dados);
+                if ($result !== false) {
+                    $count++;
+                    error_log("Inserido: $estado - $premio");
+                }
             }
         }
-    }
-    
-    public static function get_loterias() {
-        return self::$loterias;
+        
+        error_log("Total de registros inseridos: $count");
     }
 }
