@@ -45,18 +45,10 @@ Um plugin WordPress profissional para exibir Bichos Atrasados de loterias com da
 3. Enviar pasta `bichos-atrasados`
 4. Ativar no WordPress: **Plugins** → **Bichos Atrasados** → **Ativar**
 
-### Método 3: Gestor de Arquivos (cPanel)
-1. Acessar Gerenciador de Arquivos
-2. Navegar para: `public_html/wp-content/plugins/`
-3. Upload do `bichos-atrasados.zip`
-4. Extrair arquivo
-5. Ativar no WordPress
-
 ## 📖 Como Usar
 
 ### 1. No Frontend
 Adicione o shortcode em qualquer página ou post:
-
 ```
 [bichos_atrasados]
 ```
@@ -68,33 +60,8 @@ Adicione o shortcode em qualquer página ou post:
 
 ### 3. Configurar Cores
 1. Menu: **Bichos Atrasados** → **Configurações**
-2. Personalize:
-   - Cor de fundo (grid)
-   - Cor de texto
-   - Cor do card
-   - Cor do botão
-   - Cor do texto do botão
+2. Personalize as cores desejadas
 3. Clique em **Salvar Configurações**
-
-## 🗄️ Estrutura de Pastas
-
-```
-bichos-atrasados/
-├── bichos-atrasados.php ................. Arquivo principal
-├── includes/
-│   ├── class-database.php .............. Banco de dados
-│   ├── class-api-handler.php ........... Integração API
-│   ├── class-admin.php ................. Painel Wp-Admin
-│   ├── class-settings.php .............. Configurações
-│   └── class-frontend.php .............. Shortcode/Frontend
-├── css/
-│   ├── admin-style.css
-│   └── frontend-style.css
-├── js/
-│   ├── admin-script.js
-│   └── frontend-script.js
-└── README.md ........................... Este arquivo
-```
 
 ## 🔄 Atualização Automática
 
@@ -103,54 +70,7 @@ O plugin atualiza dados automaticamente **a cada 1 hora** buscando de:
 https://hojenobicho.com/atrasados/
 ```
 
-Você também pode forçar uma atualização manual:
-1. Vá em **Bichos Atrasados** → **Dashboard**
-2. Clique em **🔄 Atualizar Dados Agora**
-
-## 🎨 Personalização CSS
-
-As cores podem ser alteradas na seção **Configurações**:
-
-- **Cor de Fundo (Grid)**: Fundo da área total (padrão: #FDB710 - amarelo)
-- **Cor de Texto**: Títulos dos estados (padrão: #000000 - preto)
-- **Cor do Card**: Fundo dos cards (padrão: #FFFFFF - branco)
-- **Cor do Botão**: Botão "Ver Tabelas" (padrão: #1E5BA8 - azul)
-- **Cor do Texto do Botão**: Texto do botão (padrão: #FFFFFF - branco)
-
-## 📱 Responsivo
-
-O plugin é totalmente responsivo:
-- **Desktop**: Grid com 3 colunas
-- **Tablet**: Grid adaptável
-- **Mobile**: Layout em 1 coluna
-
-## 🔐 Segurança
-
-- ✅ Proteção contra acesso direto
-- ✅ Nonces para formulários
-- ✅ Verificação de permissões
-- ✅ Sanitização de dados
-
-## 🐛 Solução de Problemas
-
-### Plugin não aparece no menu
-- Verificar se o plugin está ativado: **Plugins** → procure **Bichos Atrasados**
-- Fazer logout e login novamente
-- Limpar cache do navegador
-
-### Shortcode não funciona
-- Verificar se o plugin está ativado
-- Usar exatamente: `[bichos_atrasados]`
-- Não funciona em Custom HTML - usar em páginas/posts normais
-
-### Dados não atualizam
-- Clicar em **Atualizar Dados Agora** no dashboard
-- Verificar se a API está respondendo
-- Verificar logs do WordPress
-
-## 📧 Suporte
-
-Para problemas ou sugestões, entre em contato com o desenvolvedor.
+Você também pode forçar uma atualização manual no dashboard.
 
 ## 📄 Licença
 

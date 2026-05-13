@@ -1,0 +1,92 @@
+/* Estilos do Frontend */
+
+.bichos-container {
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 200px;
+}
+
+.bichos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bichos-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.bichos-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bichos-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.bichos-card h3 {
+    margin: 0;
+    font-size: 16px;
+    flex: 1;
+    text-align: left;
+}
+
+.bichos-emoji {
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+.bichos-card p {
+    margin: 10px 0;
+    font-size: 14px;
+    flex: 1;
+}
+
+.bichos-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: auto;
+}
+
+.bichos-button:hover {
+    opacity: 0.9;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .bichos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bichos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bichos-card {
+        padding: 15px;
+    }
+    
+    .bichos-emoji {
+        font-size: 30px;
+    }
+}

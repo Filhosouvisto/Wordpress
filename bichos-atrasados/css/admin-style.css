@@ -1,0 +1,43 @@
+/* Estilos do Painel Administrativo */
+
+.bichos-dashboard {
+    margin-top: 20px;
+}
+
+.dashboard-box {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 400px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-box h2 {
+    margin-top: 0;
+    color: #1E5BA8;
+}
+
+.dashboard-box p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.dashboard-box form {
+    margin-top: 20px;
+}
+
+.dashboard-box .button {
+    margin-top: 10px;
+}
+
+/* Color Picker */
+.wp-picker-container {
+    margin-top: 10px;
+}
+
+.wp-color-picker-label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
