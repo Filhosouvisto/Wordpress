@@ -62,7 +62,9 @@ class Bichos_Atrasados_Database {
         
         $table_name = $wpdb->prefix . BICHOS_ATRASADOS_TABLE;
         
-        return $wpdb->get_results("SELECT DISTINCT estado FROM $table_name ORDER BY estado ASC");
+        $results = $wpdb->get_results("SELECT DISTINCT estado FROM $table_name ORDER BY estado ASC");
+        
+        return $results;
     }
     
     public static function get_last_update() {

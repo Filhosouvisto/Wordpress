@@ -59,6 +59,9 @@ class Bichos_Atrasados {
         // Criar tabela
         Bichos_Atrasados_Database::create_table();
         
+        // Inserir dados iniciais
+        Bichos_Atrasados_API_Handler::fetch_data();
+        
         // Agendar tarefa
         if (!wp_next_scheduled('bichos_atrasados_cron')) {
             wp_schedule_event(time(), 'hourly', 'bichos_atrasados_cron');

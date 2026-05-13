@@ -62,7 +62,7 @@ class Bichos_Atrasados_Frontend {
             <div class="bichos-grid">
                 <?php
                 if (empty($loterias)) {
-                    echo '<p style="text-align: center; padding: 20px;">Sem dados disponíveis.</p>';
+                    echo '<p style="text-align: center; padding: 20px; grid-column: 1/-1;">Nenhum dado encontrado. Por favor, ative o plugin novamente.</p>';
                 } else {
                     foreach ($loterias as $loteria) {
                         $estado = $loteria->estado;
